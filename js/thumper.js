@@ -1,8 +1,4 @@
 if (! ("couchoud" in window)) {
-	/**
-	 * xPlatform Namespace
-	 * @namespace xplat global namespace object
-	 */
 	couchoud = {};
 }
 
@@ -10,6 +6,13 @@ if (!("thumper" in couchoud)) {
 	couchoud.thumper = {};
 }
 
+/**
+    Class: couchoud.thumper
+    
+    completely useless DOM animator that uses
+    sound spectrum analysis from flash to strobe
+    dom elements
+*/
 couchoud.thumper = (function($) {
     
     var _window = {
@@ -18,7 +21,6 @@ couchoud.thumper = (function($) {
             area:0
         },
         elementCache = {},
-        pitchMax = 128,
         elements = null;
     
     var _self = {
@@ -49,7 +51,13 @@ couchoud.thumper = (function($) {
                 }
             }
         },
-
+        
+        /**
+            Method: thump
+            
+            find an element to animate based on pitch
+            byteArray values passed in by flash
+        */
         thump : function(pitch) {
             var p = Math.floor(Math.abs(pitch*10)),
                 list = this.sizeCache[p+""];
@@ -66,6 +74,11 @@ couchoud.thumper = (function($) {
                 }
         },
         
+        /**
+            Method: beat
+            
+            do some background animations on a target element
+        */
         beat : function(element) {
             var e = $(element),
                 bgcolor = e.data("bgColor") || e.css("background-color"),
@@ -80,12 +93,11 @@ couchoud.thumper = (function($) {
         
         updateWindowMeasurements : function() {
             _window.width = $(window).width();
-            _window.height = 271; // $(window).height();
+            _window.height = $(window).height();
             _window.area = _window.width * _window.height;
         },
         
         onWindowResize : function(event) {}
-        
     };
     
     return _self;
