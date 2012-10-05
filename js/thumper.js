@@ -1,10 +1,4 @@
-if (! ("couchoud" in window)) {
-	couchoud = {};
-}
-
-if (!("thumper" in couchoud)) {
-	couchoud.thumper = {};
-}
+couchoud = couchoud || {};
 
 /**
     Class: couchoud.thumper
